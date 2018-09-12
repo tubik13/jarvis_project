@@ -20,7 +20,7 @@ func IndexHandler(rnd render.Render, s *session.Session, db *mgo.Database) {
 
 	posts := []models.Post{}
 	for _, doc := range postDocuments {
-		post := models.Post{doc.Id, doc.Title, doc.ContentHtml, doc.ContentMarkdown}
+		post := models.Post{doc.Id, doc.Title, string(doc.ContentHtml), doc.ContentMarkdown}
 		posts = append(posts, post)
 	}
 

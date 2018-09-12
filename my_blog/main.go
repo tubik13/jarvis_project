@@ -23,12 +23,12 @@ func main() {
 		panic(err)
 	}
 
-	postsCollection = mongoSession.DB("blog")
+	postsCollection := mongoSession.DB("blog")
 
 	m := martini.Classic()
 
 	unescapeFuncMap := template.FuncMap{"unescape": unescape}
-	m.Map(db)
+	m.Map(postsCollection)
 	m.Use(session.Middleware)
 
 	m.Use(render.Renderer(render.Options{

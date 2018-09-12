@@ -22,13 +22,15 @@ func WriteHandler(rnd render.Render, s *session.Session) {
 	model.Post = models.Post{}
 	rnd.HTML(200, "write", model)
 }
-func EditHandler(s *session.Session, rnd render.Render, r *http.Request, params martini.Params, db *mgo.Database) {
+func EditHandler(rnd render.Render, s *session.Session, db *mgo.Database, params martini.Params) {
 	if !s.IsAuthorized {
 		rnd.Redirect("/")
 	}
 	postsCollection := db.C("posts")
 
-	id := params["id"]
+	id := "id"
+
+	//fmt.Println(params)
 
 	postDocument := documents.PostDocument{}
 	err := postsCollection.FindId(id).One(&postDocument)
@@ -43,6 +45,7 @@ func EditHandler(s *session.Session, rnd render.Render, r *http.Request, params 
 	model.Post = post
 	rnd.HTML(200, "write", model)
 }
+
 func ViewHandler(s *session.Session, rnd render.Render, r *http.Request, params martini.Params, db *mgo.Database) {
 	postsCollection := db.C("posts")
 

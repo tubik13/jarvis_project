@@ -5,10 +5,10 @@ import "html/template"
 type Post struct {
 	Id              string
 	Title           string
-	ContentHtml     template.HTML
+	ContentHtml     string
 	ContentMarkdown string
 }
 
 func NewPost(id, title string, contentHtml template.HTML, contentMarkdown string) *Post {
-	return &Post{id, title, contentHtml, contentMarkdown}
+	return &Post{id, title, string(contentHtml), contentMarkdown}
 }

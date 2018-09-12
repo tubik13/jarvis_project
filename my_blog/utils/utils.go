@@ -12,6 +12,8 @@ func GenerateId() string {
 	rand.Read(b)
 	return fmt.Sprintf("%x", b)
 }
+
+// ConvertMarkdownToHtml
 func ConvertMarkdownToHtml(markdown string) string {
 	return string(blackfriday.MarkdownBasic([]byte(markdown)))
 }
